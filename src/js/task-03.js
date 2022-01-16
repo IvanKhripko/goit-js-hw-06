@@ -13,30 +13,44 @@ const images = [
   },
 ];
 
-const  galleryEl = document.querySelector('.gallery')
-galleryEl.classList.add('gallery-js')
+const galleryEl = document.querySelector('.gallery');
+galleryEl.classList.add('gallery-js');
 // console.log(galleryEl);
 
 const galleryContainerEl = document.querySelector('.gallery-js');
 console.log(galleryContainerEl);
 
-const makeGallery = ({url, alt}) => {
-    const imageItemEl = document.createElement('li');
+const makeGalleryMarkup = ({ url, alt }) => {
+  return `
+  <li>
+  <img class='gallery-image' src='${url}' alt='${alt}' width = 320 height = 220/>
+  </li>
+  `;
+};
 
-    const imageEl = document.createElement('img');
-    imageEl.src = url;
-    imageEl.alt = alt;
-    imageEl.width = 360;
-    imageEl.height = 220;
-    
-    
-    imageItemEl.append(imageEl);
+const makeGalleryList = images.map(makeGalleryMarkup).join('');
+console.log(makeGalleryList);
 
-    return imageItemEl;
-  };
+galleryContainerEl.insertAdjacentHTML('afterbegin', `${makeGalleryList}`);
 
-const elements = images.map(makeGallery);
-galleryContainerEl.append(...elements);
+// ----------- СОЗДАНИЕ С ПОМОЩЬЮ createElement --------------------------
+
+// const makeGallery = ({ url, alt }) => {
+//   const imageItemEl = document.createElement('li');
+
+//   const imageEl = document.createElement('img');
+//   imageEl.src = url;
+//   imageEl.alt = alt;
+//   imageEl.width = 320;
+//   imageEl.height = 220;
+
+//   imageItemEl.append(imageEl);
+
+//   return imageItemEl;
+// };
+
+// const elements = images.map(makeGallery);
+// galleryContainerEl.append(...elements);
 
 // const elements = images.map(element => {
 //   const imageItemEl = document.createElement('li');
@@ -44,7 +58,7 @@ galleryContainerEl.append(...elements);
 //   const imageEl = document.createElement('img');
 //   imageEl.src = element.url;
 //   imageEl.alt = element.alt;
-  
+
 //   imageItemEl.append(imageEl)
 
 //   return imageItemEl;
@@ -63,7 +77,7 @@ galleryContainerEl.append(...elements);
 //   const imageEl = document.createElement('img');
 //   imageEl.src = element.url;
 //   imageEl.alt = element.alt;
-  
+
 //   imageItemEl.append(imageEl)
 //   // console.log(imageItemEl);
 

@@ -6,8 +6,14 @@
 const inputEl = document.querySelector('#name-input');
 const nameOutputEl = document.querySelector('#name-output');
 
-inputEl.addEventListener('input', onInputChange);
+inputEl.addEventListener('input', onInputChange)
+  
+
+
 
 function onInputChange(event) {
+  if (inputEl.value === '') {
+    return nameOutputEl.textContent = 'Anonymous';
+  }
   nameOutputEl.textContent = event.currentTarget.value;
 }
